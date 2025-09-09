@@ -3,118 +3,239 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EmME — Hand-poured Candles</title>
+  <title>ÉMME essence — Energy · Mind · Mood · Essence</title>
+  <meta name="description" content="ÉMME essence — a soft, feminine space for calm, glow, and gentle rituals. Energy · Mind · Mood · Essence." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* Reset-ish */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-
-    /* Background */
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color: #222;
-      background: linear-gradient(135deg, #fff6fb 0%, #f7faff 50%, #fff 100%);
-      -webkit-font-smoothing: antialiased;
+    :root{
+      /* Nude / blush palette */
+      --bg-1: #fff7f2;
+      --bg-2: #f6efe9;
+      --card: #ffffffcc;
+      --ink: #2a2a2a;
+      --muted: #6b6b6b;
+      --line: #eadfd8;
+      --accent: #d7a9a3;      /* blush */
+      --accent-2:#cbb8ae;     /* nude taupe */
+      --shadow: 0 12px 30px rgba(0,0,0,.06);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
     }
 
-    /* Wrapper */
-    .container {
-      max-width: 880px;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 700px at 80% -10%, #ffeef0 0%, transparent 60%),
+        radial-gradient(900px 600px at -10% 80%, #efe7df 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      -webkit-font-smoothing:antialiased;
+      line-height:1.5;
+    }
+
+    .wrap{
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 24px;
-      min-height: 100%;
+      padding: clamp(18px, 3vw, 32px);
+    }
+
+    .hero{
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 5vw, 56px);
+      overflow: hidden;
+    }
+
+    /* soft shapes */
+    .hero::before,.hero::after{
+      content:"";
+      position: absolute;
+      filter: blur(40px);
+      opacity:.6;
+      pointer-events:none;
+    }
+    .hero::before{
+      width: 240px; height: 240px; border-radius: 50%;
+      right: -40px; top: -60px;
+      background: radial-gradient(circle at 30% 30%, #ffd9e3 0%, #f3e5df 60%, transparent 70%);
+    }
+    .hero::after{
+      width: 320px; height: 320px; border-radius: 50%;
+      left: -60px; bottom: -80px;
+      background: radial-gradient(circle at 70% 70%, #e7d6cc 0%, #fbf3ee 55%, transparent 70%);
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:12px; margin-bottom: 10px;
+    }
+    .brand-badge{
+      width:54px; height:54px; border-radius:16px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display:grid; place-items:center;
+      color:#fff; font-weight:700; letter-spacing:1px;
+      box-shadow: 0 8px 20px rgba(215,169,163,.35);
+    }
+    .brand-name{
+      font-family: "Playfair Display", serif;
+      font-weight:700;
+      letter-spacing: .04em;
+      font-size: clamp(22px, 3.4vw, 32px);
+    }
+    .eyebrow{
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .22em;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    h1{
+      font-family: "Playfair Display", serif;
+      font-weight:700;
+      font-size: clamp(32px, 6vw, 64px);
+      line-height:1.08;
+      margin: 14px 0 10px;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: clamp(14px, 2.4vw, 18px);
+      margin-bottom: 22px;
+    }
+
+    .tokens{
       display: grid;
-      place-items: center;
-    }
-
-    /* Card */
-    .card {
-      width: 100%;
-      background: #ffffffcc;
-      backdrop-filter: blur(5px);
-      border: 1px solid #eee;
-      border-radius: 24px;
-      padding: 32px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      text-align: center;
-    }
-
-    .logo {
-      width: 72px; height: 72px;
-      border-radius: 16px;
-      background: linear-gradient(135deg,#ffb3d1,#c7d7ff);
-      display: grid; place-items: center;
-      margin: 0 auto 16px;
-      font-weight: 800; color: #fff; letter-spacing: 1px;
-    }
-
-    h1 {
-      font-size: clamp(28px, 5vw, 44px);
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .tagline {
-      color: #555;
-      font-size: clamp(14px, 2.6vw, 18px);
-      margin-bottom: 28px;
-    }
-
-    /* Buttons */
-    .actions {
-      display: flex;
+      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 10px;
+      margin: 24px 0 6px;
     }
-    .btn {
+    .token{
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      text-align:center;
+      background:#fff9f7;
+      font-weight:600;
+      box-shadow: 0 6px 16px rgba(0,0,0,.04);
+    }
+
+    .actions{
+      display:flex; flex-wrap:wrap; gap:12px; margin-top: 22px;
+    }
+    .btn{
       padding: 12px 18px;
       border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      background: #fff;
-      text-decoration: none;
-      color: #222;
-      font-weight: 600;
-      transition: transform .08s ease, box-shadow .2s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--line);
+      background:#fff;
+      text-decoration:none;
+      color: var(--ink);
+      font-weight:600;
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow: 0 6px 16px rgba(0,0,0,.05);
     }
-    .btn:hover { transform: translateY(-1px); }
-    .btn.primary {
-      background: linear-gradient(135deg,#ff86b5,#9bb8ff);
-      color: #fff; border: none;
+    .btn:hover{ transform: translateY(-1px) }
+
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#fff;
+      box-shadow: 0 10px 24px rgba(215,169,163,.35);
     }
 
-    /* Footer */
-    .footer {
-      margin-top: 26px;
-      font-size: 13px;
-      color: #6b7280;
+    .grid{
+      display:grid; gap: 16px; margin-top: 28px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .card{
+      grid-column: span 12;
+      border:1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background:#fff;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .card h3{
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 2.8vw, 28px);
+      margin-bottom: 8px;
+    }
+    .card p{ color: var(--muted) }
+
+    /* layout on larger screens */
+    @media (min-width: 800px){
+      .card.energy { grid-column: span 6; }
+      .card.mind   { grid-column: span 6; }
+      .card.mood   { grid-column: span 4; }
+      .card.essence{ grid-column: span 8; }
     }
 
-    /* Mobile spacing tweak */
-    @media (max-width: 480px) {
-      .card { padding: 24px; }
+    .footer{
+      text-align:center; color: var(--muted);
+      font-size: 13px; margin-top: 24px;
     }
+    .sep{ height:1px; background: var(--line); margin: 18px 0; border-radius: 999px; }
   </style>
 </head>
 <body>
-  <main class="container">
-    <section class="card">
-      <div class="logo">EmME</div>
-      <h1>Hand-poured candles for calm, cozy moments</h1>
-      <p class="tagline">Eco-friendly waxes · Soft, modern scents · Made with love.</p>
-
-      <div class="actions">
-        <a class="btn primary" href="#" aria-label="Shop EmME (coming soon)">Shop (coming soon)</a>
-        <a class="btn" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram</a>
-        <a class="btn" href="https://tiktok.com/@yourhandle" target="_blank" rel="noopener">TikTok</a>
-        <a class="btn" href="mailto:hello@emme.com">Email us</a>
+  <div class="wrap">
+    <section class="hero">
+      <div class="brand">
+        <div class="brand-badge">É</div>
+        <div>
+          <div class="brand-name">ÉMME essence</div>
+          <div class="eyebrow">Energy · Mind · Mood · Essence</div>
+        </div>
       </div>
 
-      <p class="footer">© <span id="y"></span> EmME. All rights reserved.</p>
+      <h1>Soft rituals for your glow</h1>
+      <p class="sub">A feminine, nude-toned sanctuary for calm mornings and cozy nights. Ground your energy, center your mind, tune your mood, and return to your essence.</p>
+
+      <div class="tokens">
+        <div class="token">Energy</div>
+        <div class="token">Mind</div>
+        <div class="token">Mood</div>
+        <div class="token">Essence</div>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="#" aria-label="Shop ÉMME essence (coming soon)">Shop (coming soon)</a>
+        <a class="btn" href="https://instagram.com/glow.with.megan" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn" href="https://tiktok.com/@glow.with.megan" target="_blank" rel="noopener">TikTok</a>
+        <a class="btn" href="mailto:Umwiza.megan1@gmail.com">Email</a>
+      </div>
+
+      <div class="grid">
+        <article class="card energy">
+          <h3>Energy</h3>
+          <p>Gentle boost, never harsh. Think warm light, slow mornings, and movement that makes you feel alive.</p>
+        </article>
+        <article class="card mind">
+          <h3>Mind</h3>
+          <p>Clarity over clutter. Breathing space for your thoughts, focus for your goals, softness for your self-talk.</p>
+        </article>
+        <article class="card mood">
+          <h3>Mood</h3>
+          <p>Colors, scents, and sounds that lift you. A curated vibe—balanced, cozy, feminine.</p>
+        </article>
+        <article class="card essence">
+          <h3>Essence</h3>
+          <p>Your truest you. Rituals that bring you back: journaling, candles, skincare, quiet moments.</p>
+        </article>
+      </div>
+
+      <div class="sep"></div>
+      <p class="footer">© <span id="y"></span> ÉMME essence • All rights reserved</p>
     </section>
-  </main>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
