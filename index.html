@@ -1,10 +1,120 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Welcome to EmME</title>
-  </head>
-  <body>
-    <h1>Hello, this is my first website! 🌸</h1>
-    <p>More updates coming soon...</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EmME — Hand-poured Candles</title>
+  <style>
+    /* Reset-ish */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    /* Background */
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: #222;
+      background: linear-gradient(135deg, #fff6fb 0%, #f7faff 50%, #fff 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Wrapper */
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 24px;
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    /* Card */
+    .card {
+      width: 100%;
+      background: #ffffffcc;
+      backdrop-filter: blur(5px);
+      border: 1px solid #eee;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+
+    .logo {
+      width: 72px; height: 72px;
+      border-radius: 16px;
+      background: linear-gradient(135deg,#ffb3d1,#c7d7ff);
+      display: grid; place-items: center;
+      margin: 0 auto 16px;
+      font-weight: 800; color: #fff; letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .tagline {
+      color: #555;
+      font-size: clamp(14px, 2.6vw, 18px);
+      margin-bottom: 28px;
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .btn {
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      text-decoration: none;
+      color: #222;
+      font-weight: 600;
+      transition: transform .08s ease, box-shadow .2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary {
+      background: linear-gradient(135deg,#ff86b5,#9bb8ff);
+      color: #fff; border: none;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 26px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    /* Mobile spacing tweak */
+    @media (max-width: 480px) {
+      .card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <div class="logo">EmME</div>
+      <h1>Hand-poured candles for calm, cozy moments</h1>
+      <p class="tagline">Eco-friendly waxes · Soft, modern scents · Made with love.</p>
+
+      <div class="actions">
+        <a class="btn primary" href="#" aria-label="Shop EmME (coming soon)">Shop (coming soon)</a>
+        <a class="btn" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn" href="https://tiktok.com/@yourhandle" target="_blank" rel="noopener">TikTok</a>
+        <a class="btn" href="mailto:hello@emme.com">Email us</a>
+      </div>
+
+      <p class="footer">© <span id="y"></span> EmME. All rights reserved.</p>
+    </section>
+  </main>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
 </html>
